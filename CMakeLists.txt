@@ -232,6 +232,7 @@ list(APPEND BLAKE2_TARGETS blake2s blake2b blake2sp blake2xb blake2bp blake2xs)
 
 # Add correct subdirectory based on the above selection
 add_subdirectory(${CONFIGURED_DIRECTORY})
+set(BLAKE2_SELECTED_INCLUDE_DIR "${CONFIGURED_DIRECTORY}/public_inc" CACHE STRING "Selected include directory" FORCE)
 
 add_library(libb2 INTERFACE)
 add_library(libb2::libb2 ALIAS libb2)
