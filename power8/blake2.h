@@ -18,15 +18,11 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#if defined(_MSC_VER)
-#define BLAKE2_PACKED(x) __pragma(pack(push, 1)) x __pragma(pack(pop))
-#else
-#define BLAKE2_PACKED(x) x __attribute__((packed))
-#endif
-
 #if defined(__cplusplus)
 extern "C" {
 #endif
+
+  #define BLAKE2_PACKED(x) x __attribute__((packed))
 
   enum blake2s_constant
   {
