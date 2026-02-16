@@ -1,6 +1,5 @@
-set(B2_COMPILE_OPTIONS -march=armv7-a -mfpu=neon-vfpv4 -mfloat-abi=hard -O3 ${COMMON_C_FLAGS})
-
-add_compile_options(${B2_COMPILE_OPTIONS})
+# set(B2_COMPILE_OPTIONS -march=armv7-a -mfpu=neon-vfpv4 -mfloat-abi=hard -O3 ${COMMON_C_FLAGS})
+set(B2_COMPILE_OPTIONS ${COMMON_C_FLAGS})
 
 # Build executables with check definition and target for running them if -DCHECK_BUILD=1 is passed
 if(BUILD_TESTING)
@@ -34,6 +33,8 @@ foreach(BLAKE2_TARGET IN LISTS BLAKE2_TARGETS)
         TYPE HEADERS
         BASE_DIRS
         public_inc)
+
+    target_compile_options(${BLAKE2_TARGET} PRIVATE ${B2_COMPILE_OPTIONS})
 endforeach()
 
 
