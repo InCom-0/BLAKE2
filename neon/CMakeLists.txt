@@ -18,83 +18,54 @@ foreach(BLAKE2_TARGET IN LISTS BLAKE2_TARGETS)
 
     target_include_directories(${BLAKE2_TARGET}
         PUBLIC
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
         $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
     )
 
-    target_sources(incplot
+    target_sources(${BLAKE2_TARGET}
         PRIVATE
         FILE_SET priv_headers
         TYPE HEADERS
         BASE_DIRS
         private_inc)
+
+    target_sources(${BLAKE2_TARGET}
+        PUBLIC
+        FILE_SET public_headers
+        TYPE HEADERS
+        BASE_DIRS
+        public_inc)
 endforeach()
 
 
-target_sources(blake2b
-    PRIVATE
+target_sources(blake2b PRIVATE
     blake2b.c
-    blake2b-round.h
-    blake2-impl.h
-    blake2b-load-neon.h
-    #Headers
-    ${CMAKE_CURRENT_LIST_DIR}/blake2.h
+
 )
 
-target_sources(blake2s
-    PRIVATE
+target_sources(blake2s PRIVATE
     blake2s.c
-    blake2s-round.h
-    blake2-impl.h
-    blake2s-load-neon.h
-    #Headers
-    ${CMAKE_CURRENT_LIST_DIR}/blake2.h
+
 )
 
-target_sources(blake2sp
-    PRIVATE
+target_sources(blake2sp PRIVATE
     blake2sp.c
     blake2s.c
-    blake2s-round.h
-    blake2-impl.h
-    blake2s-load-neon.h
-    #Headers
-    ${CMAKE_CURRENT_LIST_DIR}/blake2.h
 )
-
 target_compile_options(blake2sp PRIVATE -fopenmp)
 
-target_sources(blake2xb
-    PRIVATE
+target_sources(blake2xb PRIVATE
     blake2xb.c
     blake2b.c
-    blake2b-round.h
-    blake2-impl.h
-    blake2b-load-neon.h
-    #Headers
-    ${CMAKE_CURRENT_LIST_DIR}/blake2.h
 )
 
-target_sources(blake2bp
-    PRIVATE
+target_sources(blake2bp PRIVATE
     blake2bp.c
     blake2b.c
-    blake2b-round.h
-    blake2-impl.h
-    blake2b-load-neon.h
-    #Headers
-    ${CMAKE_CURRENT_LIST_DIR}/blake2.h
 )
-
 target_compile_options(blake2bp PRIVATE -fopenmp)
 
-target_sources(blake2xs
-    PRIVATE
+target_sources(blake2xs PRIVATE
     blake2xs.c
     blake2s.c
-    blake2s-round.h
-    blake2-impl.h
-    blake2s-load-neon.h
-    #Headers
-    ${CMAKE_CURRENT_LIST_DIR}/blake2.h
+
 )
